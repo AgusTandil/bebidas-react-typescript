@@ -102,7 +102,7 @@ export default function Header() {
                 id="category"
                 name="category"
                 onChange={handleChange}
-                value={searchFilters.ingredient}
+                value={searchFilters.category}
               >
                 <option>-- Seleccione --</option>
                 {categories.drinks.map((category) => (

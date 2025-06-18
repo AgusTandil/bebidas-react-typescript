@@ -3,7 +3,13 @@ import { Fragment } from "react";
 import { useAppStore } from "../stores/useAppStore";
 import type { Recipe } from "../types";
 export default function Modal() {
-  const { modal, closeModal, selectedRecipe } = useAppStore();
+  const {
+    modal,
+    closeModal,
+    selectedRecipe,
+    handleClickFavorite,
+    favoriteExist,
+  } = useAppStore();
 
   const renderIngredients = () => {
     const ingredients: JSX.Element[] = [];
@@ -84,9 +90,14 @@ export default function Modal() {
                     <button
                       type="button"
                       className="w-full rounded bg-orange-600 p-3 font-bold text-white uppercase shadow hover:bg-orange-500"
-                      onClick={()=> handleClickFavorite(id)}
+                      onClick={() => {
+                        handleClickFavorite(selectedRecipe);
+                        closeModal();
+                      }}
                     >
-                      Agregar a favoritos
+                      {favoriteExist(selectedRecipe.idDrink)
+                        ? "Eliminar favorito"
+                        : "Agegar a favoritos"}
                     </button>
                   </div>
                 </Dialog.Panel>
